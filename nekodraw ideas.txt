@@ -1,0 +1,21 @@
+pseudo game about drawing
+	with limitations - like can only use certain colors/brushes
+	maybe gives random adjective & word each time for you to draw
+		daily mode where it generates based on the date
+		random - gives prompt & random limitations
+		free - full drawing tool without limitations
+	take insp from draw something app for simplicity in tools
+		slider with like 4 options for brush size - tiny, regular, med big, mega big
+			like 1px, 5px, 25px, 100px sizes
+			canvas size of like 500x500px max maybe
+		few brush types - basic, transparent
+		color picker is just a list of like 2-10 or so colors (that change in random mode - amount & colors)
+		maybe just 1 level of undo/redo queue
+	name ideas
+		nekopaint
+		nekodraw
+		nekoart_daily
+		*nekodraw_daily
+	js - can download/scrsht art
+		do scr scaling thing so it can run on mobile
+

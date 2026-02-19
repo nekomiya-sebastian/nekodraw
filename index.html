@@ -1,0 +1,62 @@
+<!doctype html>
+
+<html>
+	<head>
+		<title>nekodraw</title>
+		
+		<style>
+		body
+		{
+			padding: 0px;
+			margin: 0px;
+			
+			/* prevent scrolling */
+			height: 100%;
+			overflow: hidden;
+		}
+		canvas
+		{
+			display: block;
+			margin: auto;
+			
+			/* prevent highlighting (like by double tapping on phone) */
+			-webkit-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+		</style>
+		
+		<!-- framework scripts -->
+		<script src="Framework/Graphics.js"></script>
+		<script src="Framework/Mouse.js"></script>
+		<script src="Framework/Keyboard.js"></script>
+		<script src="Framework/NekoHitbox.js"></script>
+		<script src="Framework/Button.js"></script>
+		<script src="Framework/Vec2.js"></script>
+		<script src="Framework/Timer.js"></script>
+		<script src="Framework/NekoUtils.js"></script>
+		<script src="Framework/Sprite.js"></script>
+		<script src="Framework/Rect.js"></script>
+		<script src="Framework/Circle.js"></script>
+		<script src="Framework/Range.js"></script>
+		<script src="Framework/Counter.js"></script>
+		<script src="Framework/Anim.js"></script>
+		<script src="Framework/SFX.js"></script>
+		
+		<!-- pseudo utility classes -->
+		<script src="Scripts/ParticleSystem.js"></script>
+		<script src="Scripts/NumberDrawer.js"></script>
+		<script src="Scripts/FloatingText.js"></script>
+		
+		<script src="Scripts/NekoCanv.js"></script>
+		
+	</head>
+	
+	<body>
+		<canvas id="nekocanv" width="960" height="540"></canvas>
+		<canvas id="drawcanv" width="100" height="100"></canvas>
+		
+		<!-- main scr -->
+		<script src="Framework/Main.js"></script>
+	</body>
+</html>
