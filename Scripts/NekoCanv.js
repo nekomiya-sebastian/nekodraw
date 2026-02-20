@@ -26,20 +26,27 @@ class NekoCanv
 		
 		this.toolSprs = [
 			new Sprite( "Images/Brush.png" ),
-			new Sprite( "Images/Eraser.png" )
+			new Sprite( "Images/Eraser.png" ),
+			
+			new Sprite( "Images/DownloadIcon.png" ) // last
 		]
+		this.toolDownloadInd = this.toolSprs.length - 1
 		this.toolSprSize = 12
 		this.toolHitboxes = []
 		this.toolInd = 0
 		this.toolFuncs = [
 			this.BrushFunc,
-			this.EraserFunc
+			this.EraserFunc,
+			
+			null // download (last)
 		]
 		NekoUtils.Assert( this.toolSprs.length == this.toolFuncs.length,"Tool spr & func count mismatch!" )
 		
 		this.colors = colors
 		this.colorHitboxes = []
 		this.colorInd = 0
+		
+		this.canClick = true
 	}
 	
 	Update( mouse,kbd )
@@ -51,24 +58,35 @@ class NekoCanv
 		
 		if( mouse.down )
 		{
-			for( let i = 0; i < this.toolHitboxes.length; ++i )
+			if( this.canClick )
 			{
-				if( this.toolHitboxes[i].Contains( mouse.x,mouse.y ) )
+				for( let i = 0; i < this.toolHitboxes.length; ++i )
 				{
-					this.toolInd = i
-					break
+					if( this.toolHitboxes[i].Contains( mouse.x,mouse.y ) )
+					{
+						if( i == this.toolDownloadInd )
+						{
+							this.DownloadImage()
+						}
+						else this.toolInd = i
+						
+						break
+					}
+				}
+				
+				for( let i = 0; i < this.colorHitboxes.length; ++i )
+				{
+					if( this.colorHitboxes[i].Contains( mouse.x,mouse.y ) )
+					{
+						this.colorInd = i
+						break
+					}
 				}
 			}
 			
-			for( let i = 0; i < this.colorHitboxes.length; ++i )
-			{
-				if( this.colorHitboxes[i].Contains( mouse.x,mouse.y ) )
-				{
-					this.colorInd = i
-					break
-				}
-			}
+			this.canClick = false
 		}
+		else this.canClick = true
 	}
 	
 	Draw( gfx )
@@ -202,6 +220,15 @@ class NekoCanv
 			this.colorHitboxes[i] = new Hitbox( colorX + i * this.iconSize,colorY,
 				this.iconSize,this.iconSize )
 		}
+	}
+	
+	DownloadImage()
+	{
+		const downloadLink = document.createElement( 'a' )
+		downloadLink.href = this.canv.toDataURL( "jpg" )
+		downloadLink.download = "nekodraw_image.png"
+		downloadLink.click()
+		downloadLink.remove()
 	}
 	
 	GetCurColor()
