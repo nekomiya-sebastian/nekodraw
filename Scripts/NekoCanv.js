@@ -28,6 +28,7 @@ class NekoCanv
 			new Sprite( "Images/Brush.png" ),
 			new Sprite( "Images/Eraser.png" ),
 			new Sprite( "Images/WatercolorBrush.png" ),
+			new Sprite( "Images/Chalk.png" ),
 			
 			new Sprite( "Images/DownloadIcon.png" ) // last
 		]
@@ -39,12 +40,22 @@ class NekoCanv
 			this.BrushFunc,
 			this.EraserFunc,
 			this.WatercolorFunc,
+			this.ChalkFunc,
 			
 			null // download (last)
 		]
 		NekoUtils.Assert( this.toolSprs.length == this.toolFuncs.length,"Tool spr & func count mismatch!" )
 		this.toolSelectorSpr = new Sprite( "Images/ToolSelector.png" )
 		this.watercolorTransparency = 0.03
+		this.chalkBrush = [
+			[ 0.0,0.1,0.2,0.1,0.1,0.0 ],
+			[ 0.1,0.2,0.1,0.3,0.1,0.1 ],
+			[ 0.3,0.3,0.4,0.4,0.3,0.2 ],
+			[ 0.2,0.3,0.2,0.4,0.4,0.3 ],
+			[ 0.1,0.1,0.4,0.2,0.3,0.1 ],
+			[ 0.0,0.1,0.2,0.3,0.1,0.0 ]
+		]
+		this.chalkTransparency = 0.3
 		
 		this.colors = colors
 		this.colorHitboxes = []
@@ -180,6 +191,29 @@ class NekoCanv
 	{
 		self.ctx.globalAlpha = self.watercolorTransparency
 		self.BrushFunc( x,y,self )
+		self.ctx.globalAlpha = 1.0
+	}
+	ChalkFunc( x,y,self )
+	{
+		const chalkWidth = self.chalkBrush.length
+		const chalkHeight = self.chalkBrush[0].length
+		// *2 cuz brushSize is hSize cuz DrawCircle uses radius
+		const brushSize = self.GetBrushSize() / chalkWidth * 2
+		x -= chalkWidth * brushSize / 2
+		y -= chalkHeight * brushSize / 2
+		for( let chalkY = 0; chalkY < chalkHeight; ++chalkY )
+		{
+			for( let chalkX = 0; chalkX < chalkWidth; ++chalkX )
+			{
+				const curPixel = self.chalkBrush[chalkY][chalkX]
+				if( curPixel > 0 )
+				{
+					self.ctx.globalAlpha = curPixel * self.chalkTransparency
+					self.FillRect( x + chalkX * brushSize,y + chalkY * brushSize,
+						brushSize,brushSize,self.GetCurColor() )
+				}
+			}
+		}
 		self.ctx.globalAlpha = 1.0
 	}
 	

@@ -7,16 +7,9 @@ pseudo game about drawing
 		/	idk how we handle color in this mode tho
 	tool ideas
 		--watercolor brush - transparency
-		chalk?
+		--chalk
 		color picker
 		some kind of texture brush
-	name ideas
-		nekopaint
-		nekodraw
-		nekoart_daily
-		nekodraw_daily
-		nekosketch
-		*nekoscrawl
 
 maybe want a confirm download button
 need a proper brush tip showing brush size or smth

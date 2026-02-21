@@ -9,7 +9,7 @@ class AdjectiveList extends ItemList
 			"Large","Small","Big","Tall","Medium","Tiny","Microscopic",
 			// "Red","Orange","Yellow","Green","Blue","Purple","Indigo","Violet","Cyan",
 			"Leafy","Sandy","Crusty","Snowy","Coarse",
-			"Super","Evil","Helpful","Good","Treacherous","Alleged","Sinister","Magical",
+			"Super","Evil","Helpful","Good","Treacherous","Alleged","Sinister","Magical","Dark",
 			"Cute","Bright","Fun","Silly","Shiny","Endearing","Quirky",
 			"Undersea","Mountaintop","Forested",
 			"Plump","Elegant","Scruffy","Healthy","Bulbous","Distinct",
